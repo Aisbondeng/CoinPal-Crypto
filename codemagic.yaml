@@ -1,0 +1,19 @@
+workflows:
+  build_vue_web:
+    name: Build CoinPal Vue App
+    environment:
+      node: 18.16.0
+      npm: 9.5.1
+    scripts:
+      - name: Install dependencies
+        script: npm install
+      - name: Run lint (optional)
+        script: npm run lint || echo "Lint warnings ignored"
+      - name: Build project
+        script: npm run build
+    artifacts:
+      - dist/**
+    publishing:
+      scripts:
+        - name: Output build folder structure
+          script: ls -R dist
